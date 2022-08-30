@@ -10,8 +10,6 @@
 /Host/Properties/AssemblyInfo.cs
 /MessageService.sln
 /MessageService/bin/*
-/MessageService/IMessageService.cs
-/MessageService/MessageService.cs
 /MessageService/MessageService.csproj
 /MessageService/MessageService.csproj.user
 /MessageService/obj/Debug/*
