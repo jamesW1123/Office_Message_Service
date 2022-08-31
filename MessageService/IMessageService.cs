@@ -7,9 +7,6 @@ namespace MessageService
     [ServiceContract(CallbackContract = typeof(IMessageServiceCallback))]
     public interface IMessageService
     {
-        [OperationContract(IsOneWay = true)]
-        void ProcessReport();
-
         [OperationContract]
         MessageModel GetMessage(string id);
 
@@ -22,9 +19,6 @@ namespace MessageService
 
     public interface IMessageServiceCallback
     {
-        [OperationContract(IsOneWay = true)]
-        void Progress(int percentageCompleted);
-
         [OperationContract(IsOneWay = true)]
         void RecieveMessage(MessageModel message);
     }
