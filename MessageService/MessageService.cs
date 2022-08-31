@@ -1,8 +1,8 @@
-﻿using DataComm.Models;
+﻿using DataComm.DbAccess;
+using DataComm.Models;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using System.Threading;
 
 namespace MessageService
 {
@@ -30,11 +30,11 @@ namespace MessageService
             Console.WriteLine(message.Address);
             Console.WriteLine(message.Phone);
             Console.WriteLine(message.Email);
-            Console.WriteLine(message.MessageText);
-            Console.WriteLine(message.DateTaken);
+            Console.WriteLine(message.Message_Text);
+            Console.WriteLine(message.Date_Taken);
             Console.WriteLine(message.Recipient);
 
-            //DBComms.Insert(message);
+            DB.Insert(message);
 
             string rec = message.Recipient;
 
