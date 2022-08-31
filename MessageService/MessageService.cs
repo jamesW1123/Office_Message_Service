@@ -33,15 +33,6 @@ namespace MessageService
             users.Add(userId, OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>());
         }
 
-        public void ProcessReport()
-        {
-            for (int i = 1; i <= 100; i++)
-            {
-                Thread.Sleep(50);
-                OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>().Progress(i);
-            }
-        }
-
         public void SendMessage(MessageModel message)
         {
             Console.WriteLine(message.Name);
