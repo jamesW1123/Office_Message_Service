@@ -12,20 +12,11 @@ namespace MessageService
     {
         private Dictionary<string, IMessageServiceCallback> users = new Dictionary<string, IMessageServiceCallback>();
 
-        public MessageModel GetMessage(string id)
+        public List<MessageModel> GetMessages(string id)
         {
-            //DBComms.GetMessages();
+            var messages = DB.GetMessages(id);
 
-            MessageModel message = new MessageModel();
-            message.Name = "Someone Else";
-            message.Address = "123 Any St.";
-            message.Phone = "123-123-1234";
-            message.Email = "someone@email.com";
-            message.MessageText = "Some message goes here";
-            message.DateTaken = DateTime.Now.ToString();
-            message.Recipient = id;
-
-            return message;
+            return messages;
         }
 
         public void Join(string userId)
