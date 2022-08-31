@@ -1,4 +1,5 @@
 ﻿using DataComm.Models;
+using System.Collections.Generic;
 using System.ServiceModel;
 
 namespace MessageService
@@ -8,7 +9,7 @@ namespace MessageService
     public interface IMessageService
     {
         [OperationContract]
-        MessageModel GetMessage(string id);
+        List<MessageModel> GetMessages(string id);
 
         [OperationContract(IsOneWay = true)]
         void Join(string userId);
