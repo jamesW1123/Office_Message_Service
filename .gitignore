@@ -15,3 +15,5 @@
 /MessageService/obj/Debug/*
 /MessageService/Properties/AssemblyInfo.cs
 /packages/*
+/DataComm.Tests/*
+/MessageService.Tests/*
