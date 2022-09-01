@@ -12,6 +12,11 @@ namespace MessageService
     {
         private Dictionary<string, IMessageServiceCallback> users = new Dictionary<string, IMessageServiceCallback>();
 
+        public void DeleteMessage(int mid)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<MessageModel> GetMessages(string id)
         {
             var messages = DB.GetMessages(id);
@@ -22,6 +27,31 @@ namespace MessageService
         public void Join(string userId)
         {
             users.Add(userId, OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>());
+        }
+
+        public void MarkDelivered(int mid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MarkNotDelivered(int mid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MarkNotRead(int mid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MarkRead(int mid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RestoreMessage(int mid)
+        {
+            throw new NotImplementedException();
         }
 
         public void SendMessage(MessageModel message)
