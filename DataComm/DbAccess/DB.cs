@@ -19,8 +19,8 @@ namespace DataComm.DbAccess
             {
                 using (IDbConnection conn = new SQLiteConnection(_connectionString))
                 {
-                    string sql = "INSERT INTO Messages" +
-                        "(recipient, name, address, phone, email, message_text, date_taken, sent_from, delivered) " +
+                    string sql = "INSERT INTO Messages \n" +
+                        "(recipient, name, address, phone, email, message_text, date_taken, sent_from, delivered) \n" +
                         "VALUES(@Recipient, @Name, @Address, @Phone, @Email, @Message_Text, @Date_Taken, @Sent_From, @Delivered)";
 
                     conn.Execute(sql, message);
@@ -38,12 +38,12 @@ namespace DataComm.DbAccess
             {
                 using (IDbConnection conn = new SQLiteConnection(_connectionString))
                 {
-                    string sql = "UPDATE Messages" +
-                        "SET delivered = 1" +
-                        "WHERE mid = @Mid";
+                    string sql = "UPDATE Messages \n" +
+                        "SET delivered = 1 \n" +
+                        "WHERE mid = @mid";
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("@recipient", mid);
+                    parameters.Add("@mid", mid);
 
                     conn.Execute(sql, parameters);
                 }
@@ -60,12 +60,12 @@ namespace DataComm.DbAccess
             {
                 using (IDbConnection conn = new SQLiteConnection(_connectionString))
                 {
-                    string sql = "UPDATE Messages" +
-                        "SET delivered = 0" +
-                        "WHERE mid = @Mid";
+                    string sql = "UPDATE Messages \n" +
+                        "SET delivered = 0 \n" +
+                        "WHERE mid = @mid";
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("@recipient", mid);
+                    parameters.Add("@mid", mid);
 
                     conn.Execute(sql, parameters);
                 }
@@ -103,7 +103,9 @@ namespace DataComm.DbAccess
             {
                 using (IDbConnection conn = new SQLiteConnection(_connectionString))
                 {
-                    string sql = "SELECT * FROM messages WHERE recipient = @recipient";
+                    string sql = "SELECT * \n" +
+                        "FROM messages \n" +
+                        "WHERE recipient = @recipient";
 
                     var parameters = new DynamicParameters();
                     parameters.Add("@recipient", recipient);
@@ -116,6 +118,94 @@ namespace DataComm.DbAccess
             {
                 Console.WriteLine(ex.ToString());
                 return null;
+            }
+        }
+
+        public static void Delete(int mid)
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "UPDATE Messages \n" +
+                        "SET deleted = 1 \n" +
+                        "WHERE mid = @mid";
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@mid", mid);
+
+                    conn.Execute(sql, parameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public static void Restore(int mid)
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "UPDATE Messages \n" +
+                        "SET deleted = 0 \n" +
+                        "WHERE mid = @mid";
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@mid", mid);
+
+                    conn.Execute(sql, parameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public static void MarkRead(int mid)
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "UPDATE Messages \n" +
+                        "SET read = 1 \n" +
+                        "WHERE mid = @mid";
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@mid", mid);
+
+                    conn.Execute(sql, parameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        public static void MarkNotRead(int mid)
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "UPDATE Messages \n" +
+                        "SET read = 0 \n" +
+                        "WHERE mid = @mid";
+
+                    var parameters = new DynamicParameters();
+                    parameters.Add("@mid", mid);
+
+                    conn.Execute(sql, parameters);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
     }
