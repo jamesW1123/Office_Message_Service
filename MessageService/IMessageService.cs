@@ -16,6 +16,24 @@ namespace MessageService
 
         [OperationContract(IsOneWay = true)]
         void SendMessage(MessageModel message);
+
+        [OperationContract(IsOneWay = true)]
+        void MarkDelivered(int mid);
+
+        [OperationContract(IsOneWay = true)]
+        void MarkNotDelivered(int mid);
+
+        [OperationContract(IsOneWay = true)]
+        void DeleteMessage(int mid);
+
+        [OperationContract(IsOneWay = true)]
+        void RestoreMessage(int mid);
+
+        [OperationContract(IsOneWay = true)]
+        void MarkRead(int mid);
+
+        [OperationContract(IsOneWay = true)]
+        void MarkNotRead(int mid);
     }
 
     public interface IMessageServiceCallback
