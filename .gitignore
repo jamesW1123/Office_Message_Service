@@ -267,3 +267,4 @@ __pycache__/
 /MessageService/MessageService.csproj
 /MessageService.sln
 /MessageService/MessageService.csproj
+/Host/MessageDB.db
