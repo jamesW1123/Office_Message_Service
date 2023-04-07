@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.1525
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageService", "MessageService\MessageService.csproj", "{4E9B8FB3-418C-4C24-884C-D90780B5D9C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataComm", "DataComm\DataComm.csproj", "{A70A9DA3-51AF-488D-A758-89E4FDFF1FED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "Host\Host.csproj", "{D07092B3-3C9B-4B05-A00A-DC735FFAC9A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4E9B8FB3-418C-4C24-884C-D90780B5D9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E9B8FB3-418C-4C24-884C-D90780B5D9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E9B8FB3-418C-4C24-884C-D90780B5D9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70A9DA3-51AF-488D-A758-89E4FDFF1FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70A9DA3-51AF-488D-A758-89E4FDFF1FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70A9DA3-51AF-488D-A758-89E4FDFF1FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70A9DA3-51AF-488D-A758-89E4FDFF1FED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D07092B3-3C9B-4B05-A00A-DC735FFAC9A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D07092B3-3C9B-4B05-A00A-DC735FFAC9A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D07092B3-3C9B-4B05-A00A-DC735FFAC9A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D07092B3-3C9B-4B05-A00A-DC735FFAC9A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
