@@ -41,11 +41,15 @@ namespace MessageService
         public void Join(string userId)
         {
             users.Add(userId, OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>());
+            Console.WriteLine("JOIN:");
+            foreach (string id in users.Keys) Console.WriteLine(id);
         }
 
         public void Leave(string userId)
         {
             users.Remove(userId);
+            Console.WriteLine("LEAVE:");
+            foreach (string id in users.Keys) Console.WriteLine(id);
         }
 
         public void MarkDelivered(int mid)
