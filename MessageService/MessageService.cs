@@ -1,5 +1,5 @@
-﻿using DataComm.DbAccess;
-using DataComm.Models;
+﻿using DataComm;
+using DataComm.DbAccess;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -17,9 +17,23 @@ namespace MessageService
             throw new NotImplementedException();
         }
 
-        public List<MessageModel> GetMessages(string id)
+        public List<Message> GetAllMessages(string id)
         {
-            var messages = DB.GetMessages(id);
+            var messages = DB.GetAllMessages(id);
+
+            return messages;
+        }
+
+        public List<Message> GetDeletedMessages(string id)
+        {
+            var messages = DB.GetAllMessages(id);
+
+            return messages;
+        }
+
+        public List<Message> GetNewMessages(string id)
+        {
+            var messages = DB.GetAllMessages(id);
 
             return messages;
         }
@@ -27,6 +41,11 @@ namespace MessageService
         public void Join(string userId)
         {
             users.Add(userId, OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>());
+        }
+
+        public void Leave(string userId)
+        {
+            users.Remove(userId);
         }
 
         public void MarkDelivered(int mid)
@@ -54,7 +73,7 @@ namespace MessageService
             throw new NotImplementedException();
         }
 
-        public void SendMessage(MessageModel message)
+        public void SendMessage(Message message)
         {
             Console.WriteLine(message.Name);
             Console.WriteLine(message.Address);

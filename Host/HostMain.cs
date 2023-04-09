@@ -1,5 +1,5 @@
-﻿using DataComm.DbAccess;
-using DataComm.Models;
+﻿using DataComm;
+using DataComm.DbAccess;
 using System;
 using System.ServiceModel;
 
@@ -20,8 +20,8 @@ namespace Host
             //message.Sent_From = "user1";
             //DB.Insert(message);
 
-            var x = DB.GetMessages("user3");
-            foreach (MessageModel msg in x)
+            var x = DB.GetAllMessages("user3");
+            foreach (Message msg in x)
             {
                 Console.WriteLine(msg.Mid);
                 Console.WriteLine(msg.Recipient);
@@ -37,54 +37,58 @@ namespace Host
                 Console.WriteLine(msg.Deleted);
                 Console.WriteLine();
 
-                DB.MarkRead(msg.Mid);
+                //DB.MarkRead(msg.Mid);
             }
             Console.WriteLine("______________________________________________________________________________________________");
-            x = DB.GetMessages("user3");
-            foreach (MessageModel msg in x)
+            x = DB.GetNewMessages("user3");
+            foreach (Message msg in x)
             {
                 Console.WriteLine(msg.Mid);
+                Console.WriteLine(msg.Name);
                 Console.WriteLine(msg.Delivered);
                 Console.WriteLine(msg.Read);
                 Console.WriteLine(msg.Deleted);
                 Console.WriteLine();
 
-                DB.MarkNotRead(msg.Mid);
+                //DB.MarkNotRead(msg.Mid);
             }
             Console.WriteLine("______________________________________________________________________________________________");
-            x = DB.GetMessages("user3");
-            foreach (MessageModel msg in x)
+            x = DB.GetDeletedMessages("user3");
+            foreach (Message msg in x)
             {
                 Console.WriteLine(msg.Mid);
+                Console.WriteLine(msg.Name);
                 Console.WriteLine(msg.Delivered);
                 Console.WriteLine(msg.Read);
                 Console.WriteLine(msg.Deleted);
                 Console.WriteLine();
 
-                DB.Delete(msg.Mid);
+                //DB.Delete(msg.Mid);
             }
             Console.WriteLine("______________________________________________________________________________________________");
-            x = DB.GetMessages("user3");
-            foreach (MessageModel msg in x)
-            {
-                Console.WriteLine(msg.Mid);
-                Console.WriteLine(msg.Delivered);
-                Console.WriteLine(msg.Read);
-                Console.WriteLine(msg.Deleted);
-                Console.WriteLine();
+            //x = DB.GetMessages("user3");
+            //foreach (MessageModel msg in x)
+            //{
+            //    Console.WriteLine(msg.Mid);
+            //    Console.WriteLine(msg.Name);
+            //    Console.WriteLine(msg.Delivered);
+            //    Console.WriteLine(msg.Read);
+            //    Console.WriteLine(msg.Deleted);
+            //    Console.WriteLine();
 
-                DB.Restore(msg.Mid);
-            }
-            Console.WriteLine("______________________________________________________________________________________________");
-            x = DB.GetMessages("user3");
-            foreach (MessageModel msg in x)
-            {
-                Console.WriteLine(msg.Mid);
-                Console.WriteLine(msg.Delivered);
-                Console.WriteLine(msg.Read);
-                Console.WriteLine(msg.Deleted);
-                Console.WriteLine();
-            }
+            //    //DB.Restore(msg.Mid);
+            //}
+            //Console.WriteLine("______________________________________________________________________________________________");
+            //x = DB.GetMessages("user3");
+            //foreach (MessageModel msg in x)
+            //{
+            //    Console.WriteLine(msg.Mid);
+            //    Console.WriteLine(msg.Name);
+            //    Console.WriteLine(msg.Delivered);
+            //    Console.WriteLine(msg.Read);
+            //    Console.WriteLine(msg.Deleted);
+            //    Console.WriteLine();
+            //}
 
             using (ServiceHost host = new ServiceHost(typeof(MessageService.MessageService)))
             {
