@@ -34,6 +34,27 @@ namespace DataComm.DbAccess
             }
         }
 
+        public static List<User> GetActiveUsers()
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "SELECT user_name, display_name \n" +
+                        "FROM user \n" +
+                        "WHERE active = 1";
+
+                    var output = conn.Query<User>(sql);
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+        }
+
         public static List<Message> GetAllMessages(string recipient)
         {
             try
@@ -231,6 +252,25 @@ namespace DataComm.DbAccess
                     //Console.WriteLine(msg.Delivered);
                     //Console.WriteLine(msg.SentFrom);
                 }
+            }
+        }
+
+        public static void RegisterUser(User user)
+        {
+            try
+            {
+                using (IDbConnection conn = new SQLiteConnection(_connectionString))
+                {
+                    string sql = "INSERT INTO User \n" +
+                        "(user_name, display_name, pw, active) \n" +
+                        "VALUES(@User_Name, @Display_Name, 'q', 1)";
+
+                    conn.Execute(sql, user);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
 

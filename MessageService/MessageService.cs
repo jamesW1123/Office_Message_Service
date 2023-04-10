@@ -17,6 +17,14 @@ namespace MessageService
             throw new NotImplementedException();
         }
 
+        public List<User> GetActiveUsers()
+        {
+            Console.WriteLine("GetActiveUsers");
+            var users = DB.GetActiveUsers();
+            Console.WriteLine(users.Count);
+            return users;
+        }
+
         public List<Message> GetAllMessages(string id)
         {
             var messages = DB.GetAllMessages(id);

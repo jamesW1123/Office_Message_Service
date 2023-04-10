@@ -12,6 +12,9 @@ namespace MessageService
         void DeleteMessage(int mid);
 
         [OperationContract]
+        List<User> GetActiveUsers();
+
+        [OperationContract]
         List<Message> GetAllMessages(string id);
 
         [OperationContract]
