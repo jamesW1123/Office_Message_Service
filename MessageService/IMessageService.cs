@@ -4,7 +4,6 @@ using System.ServiceModel;
 
 namespace MessageService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract(CallbackContract = typeof(IMessageServiceCallback))]
     public interface IMessageService
     {
@@ -40,6 +39,9 @@ namespace MessageService
 
         [OperationContract(IsOneWay = true)]
         void MarkRead(int mid);
+
+        [OperationContract]
+        bool RegisterUser(User user);
 
         [OperationContract(IsOneWay = true)]
         void RestoreMessage(int mid);
