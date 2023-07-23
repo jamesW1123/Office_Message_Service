@@ -63,7 +63,8 @@ namespace DataComm.DbAccess
                 {
                     string sql = "SELECT * \n" +
                         "FROM messages \n" +
-                        "WHERE recipient = @recipient AND deleted = 0";
+                        "WHERE recipient = @recipient AND deleted = 0 \n" +
+                        "ORDER BY date_taken ASC";
 
                     var parameters = new DynamicParameters();
                     parameters.Add("@recipient", recipient);
@@ -127,7 +128,7 @@ namespace DataComm.DbAccess
             }
         }
 
-        public static void Insert(Message message)
+        public static int Insert(Message message)
         {
             try
             {
@@ -135,14 +136,17 @@ namespace DataComm.DbAccess
                 {
                     string sql = "INSERT INTO Messages \n" +
                         "(recipient, name, address, phone, email, message_text, date_taken, sent_from, delivered) \n" +
-                        "VALUES(@Recipient, @Name, @Address, @Phone, @Email, @Message_Text, @Date_Taken, @Sent_From, @Delivered)";
+                        "VALUES(@Recipient, @Name, @Address, @Phone, @Email, @Message_Text, @Date_Taken, @Sent_From, @Delivered) \n" +
+                        "RETURNING mid";
 
-                    conn.Execute(sql, message);
+                    int result = conn.ExecuteScalar<int>(sql, message);
+                    return result;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return -1;
             }
         }
 
@@ -255,7 +259,7 @@ namespace DataComm.DbAccess
             }
         }
 
-        public static void RegisterUser(User user)
+        public static bool RegisterUser(User user)
         {
             try
             {
@@ -265,12 +269,13 @@ namespace DataComm.DbAccess
                         "(user_name, display_name, pw, active) \n" +
                         "VALUES(@User_Name, @Display_Name, 'q', 1)";
 
-                    conn.Execute(sql, user);
+                    return conn.Execute(sql, user) > 0 ? true : false;
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
+                return false;
             }
         }
 
