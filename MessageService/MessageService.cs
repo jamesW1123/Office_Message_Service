@@ -14,7 +14,7 @@ namespace MessageService
 
         public void DeleteMessage(int mid)
         {
-            throw new NotImplementedException();
+            DB.Delete(mid);
         }
 
         public List<User> GetActiveUsers()
@@ -34,20 +34,25 @@ namespace MessageService
 
         public List<Message> GetDeletedMessages(string id)
         {
-            var messages = DB.GetAllMessages(id);
+            var messages = DB.GetDeletedMessages(id);
 
             return messages;
         }
 
         public List<Message> GetNewMessages(string id)
         {
-            var messages = DB.GetAllMessages(id);
+            var messages = DB.GetNewMessages(id);
 
             return messages;
         }
 
         public void Join(string userId)
         {
+            if (users.ContainsKey(userId))
+            {
+                users.Remove(userId);
+            }
+
             users.Add(userId, OperationContext.Current.GetCallbackChannel<IMessageServiceCallback>());
         }
 
@@ -58,22 +63,27 @@ namespace MessageService
 
         public void MarkDelivered(int mid)
         {
-            throw new NotImplementedException();
+            DB.MarkDelivered(mid);
         }
 
         public void MarkNotDelivered(int mid)
         {
-            throw new NotImplementedException();
+            DB.MarkNotDelivered(mid);
         }
 
         public void MarkNotRead(int mid)
         {
-            throw new NotImplementedException();
+            DB.MarkNotRead(mid);
         }
 
         public void MarkRead(int mid)
         {
-            throw new NotImplementedException();
+            DB.MarkRead(mid);
+        }
+
+        public bool RegisterUser(User user)
+        {
+            return DB.RegisterUser(user);
         }
 
         public void RestoreMessage(int mid)
@@ -91,7 +101,8 @@ namespace MessageService
             Console.WriteLine(message.Date_Taken);
             Console.WriteLine(message.Recipient);
 
-            DB.Insert(message);
+            int id = DB.Insert(message);
+            message.Mid = id;
 
             string rec = message.Recipient;
 
