@@ -25,38 +25,38 @@ namespace Host
             //message.Sent_From = "user1";
             //DB.Insert(message);
 
-            var x = DataComm.DbAccess.DB.GetAllMessages("user3");
-            foreach (DataComm.Message msg in x)
-            {
-                Console.WriteLine(msg.Mid);
-                Console.WriteLine(msg.Recipient);
-                Console.WriteLine(msg.Name);
-                Console.WriteLine(msg.Address);
-                Console.WriteLine(msg.Phone);
-                Console.WriteLine(msg.Email);
-                Console.WriteLine(msg.Message_Text);
-                Console.WriteLine(msg.Date_Taken);
-                Console.WriteLine(msg.Sent_From);
-                Console.WriteLine(msg.Delivered);
-                Console.WriteLine("read: " + msg.Read);
-                Console.WriteLine(msg.Deleted);
-                Console.WriteLine();
+            //var x = DataComm.DbAccess.DB.GetAllMessages("user3");
+            //foreach (DataComm.Message msg in x)
+            //{
+            //    Console.WriteLine(msg.Mid);
+            //    Console.WriteLine(msg.Recipient);
+            //    Console.WriteLine(msg.Name);
+            //    Console.WriteLine(msg.Address);
+            //    Console.WriteLine(msg.Phone);
+            //    Console.WriteLine(msg.Email);
+            //    Console.WriteLine(msg.Message_Text);
+            //    Console.WriteLine(msg.Date_Taken);
+            //    Console.WriteLine(msg.Sent_From);
+            //    Console.WriteLine(msg.Delivered);
+            //    Console.WriteLine("read: " + msg.Read);
+            //    Console.WriteLine(msg.Deleted);
+            //    Console.WriteLine();
 
-                DataComm.DbAccess.DB.MarkRead(msg.Mid);
-            }
-            Console.WriteLine("______________________________________________________________________________________________");
-            x = DataComm.DbAccess.DB.GetNewMessages("user3");
-            foreach (DataComm.Message msg in x)
-            {
-                Console.WriteLine(msg.Mid);
-                Console.WriteLine(msg.Name);
-                Console.WriteLine(msg.Delivered);
-                Console.WriteLine("read: " + msg.Read);
-                Console.WriteLine(msg.Deleted);
-                Console.WriteLine();
+            //    DataComm.DbAccess.DB.MarkRead(msg.Mid);
+            //}
+            //Console.WriteLine("______________________________________________________________________________________________");
+            //x = DataComm.DbAccess.DB.GetNewMessages("user3");
+            //foreach (DataComm.Message msg in x)
+            //{
+            //    Console.WriteLine(msg.Mid);
+            //    Console.WriteLine(msg.Name);
+            //    Console.WriteLine(msg.Delivered);
+            //    Console.WriteLine("read: " + msg.Read);
+            //    Console.WriteLine(msg.Deleted);
+            //    Console.WriteLine();
 
-                DataComm.DbAccess.DB.MarkNotRead(msg.Mid);
-            }
+            //    DataComm.DbAccess.DB.MarkNotRead(msg.Mid);
+            //}
             //Console.WriteLine("______________________________________________________________________________________________");
             //x = DB.GetDeletedMessages("user3");
             //foreach (Message msg in x)
